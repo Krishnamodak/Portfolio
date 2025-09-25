@@ -1,42 +1,757 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="description" content="Web site created using create-react-app" />
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-  <title>S0umyajit | Portfolio</title>
-  <meta name="description" content="Self Developed personal website build with React.js">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Portfolio | Dark Theme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0ea5e9',
+                        secondary: '#7e22ce',
+                        dark: '#0f172a',
+                        darker: '#020617',
+                    },
+                    fontFamily: {
+                        sans: ['inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-  <!-- Google / Search Engine Tags -->
-  <meta itemprop="name" content="S0umyajit | Portfolio">
-  <meta itemprop="description" content="Self Developed personal website build with React.js">
-  <meta itemprop="image"
-    content="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/Images/readme-img.png?token=AK7VCIF5RYEUZZAURELPTAC76U6AK">
+        body {
+            font-family: 'inter', sans-serif;
+            background-color: #03c399;
+            color: #961c43;
+            scroll-behavior: smooth;
+        }
 
-  <!-- Facebook Meta Tags -->
-  <meta property="og:url" content="https://soumyajit.vercel.app">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="S0umyajit | Portfolio">
-  <meta property="og:description" content="Self Developed personal website build with React.js">
-  <meta property="og:image"
-    content="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/Images/readme-img.png?token=AK7VCIF5RYEUZZAURELPTAC76U6AK">
+        section {
+    min-height: 80vh;
+    padding: 1rem 9% 2rem;
+}
 
-  <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="S0umyajit | Portfolio">
-  <meta name="twitter:description" content="Self Developed personal website build with React.js">
-  <meta name="twitter:image"
-    content="https://raw.githubusercontent.com/soumyajit4419/Portfolio/master/Images/readme-img.png?token=AK7VCIF5RYEUZZAURELPTAC76U6AK">
+
+/* Typewriter basic (add to your styles.css, after Tailwind if you use Tailwind) */
+.typewriter {
+  display: inline-block;      /* text inline rahe aur transform safe rahe */
+  white-space: nowrap;        /* ek line me type ho */
+  overflow: hidden;           /* extra text chhupa rahe */
+  border-right: 2px solid currentColor; /* caret, color text ke saath match karega */
+  font-family: inherit;       /* Tailwind font maintain rahe */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Blinking caret animation (tab/desktop) */
+@keyframes caretBlink {
+  0%, 50% { border-color: currentColor; }
+  50.1%, 100% { border-color: transparent; }
+}
+
+/* jab typing chal raha ho to caret blink karega */
+.typewriter.typing {
+  animation: caretBlink 1s steps(1) infinite;
+}
+
+/* Accessibility: agar user reduced motion prefer karta hai, typing skipp karo */
+@media (prefers-reduced-motion: reduce) {
+  .typewriter {
+    border-right: none;
+    animation: none !important;
+  }
+}
+
+ 
+
+
+
+
+        .gradient-text {
+            background: linear-gradient(90deg, #0ea5e9, #7e22ce);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.2);
+        }
+
+        .custom-title {
+            animation: homeBgText 6s linear infinite;
+            animation-delay: 2s;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, #0ea5e9, #7e22ce);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .active::after {
+            width: 100%;
+        }
+
+
+
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #1e293b;
+        }
+
+        .skill-progress {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #0ea5e9, #7e22ce);
+            transition: width 1s ease-in-out;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            box-shadow: 5px 5px 15px rgba(2, 6, 23, 0.5),
+                -5px -5px 15px rgba(30, 41, 59, 0.5);
+        }
+
+        .contact-input {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+
+        .contact-input:focus {
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #0ea5e9, #7e22ce);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+
+    
+
+
+
+        @keyframes float {
+  0%, 100% {
+    transform: translate(70px, 0);   /* 30px right, normal Y */
+  }
+  50% {
+    transform: translate(70px, -10px); /* 30px right, thoda upar */
+  }
+}
+
+.floating {
+  animation: float 10s ease-in-out infinite;
+}
+
+    </style>
 </head>
 
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
+<body class="bg-dark text-slate-200">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-darker/80 backdrop-blur-sm z-50 shadow-lg reveal">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold gradient-text reveal">Portfolio</a>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-slate-200 hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#Education" class="nav-link">Education</a>
+                    <a href="#tools" class="nav-link">Skills</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-2">
+                <a href="#home" class="block py-2 nav-link active">Home</a>
+                <a href="#about" class="block py-2 nav-link">About</a>
+                <a href="#tools" class="block py-2 nav-link">Skill</a>
+                <a href="#projects" class="block py-2 nav-link">Projects</a>
+                <a href="#contact" class="block py-2 nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20 ">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 reveal">Hi, I'm <span class="gradient-text "> Krishna</span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 text-slate-300 custom-title reveal"><span class="typewriter">Full Stack Developer</span> 
+                </h2>
+                <span class="animate" style="--i: 3"></span>
+
+                <p class="text-lg mb-8 text-slate-400 max-w-lg reveal">
+                    I build exceptional digital experiences that are fast, accessible, and visually appealing.
+                    Let's create something amazing together.
+                </p>
+                <div class="flex space-x-4 reveal">
+                    <a href="resume.pdf" target="_blank" class="px-6 py-3 rounded-full btn-primary font-medium">Downlode CV
+                 </a>
+                    <a href="#projects"
+                        class="px-6 py-3 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition reveal">View
+                        Work</a>
+                </div>
+                <div class="flex mt-8 space-x-4">
+                    <a href="https://github.com/Krishnamodak"
+                        class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary reveal">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="www.linkedin.com/in/krishna-modak"
+                        class="social-icon text-xl w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-600 reveal">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+                    <div
+                        class="absolute inset-0 rounded-full bg-gradient-to-br from-primary to-secondary blur-xl opacity-20">
+                    </div>
+                    <img src="Images/krishna.jpg" alt="Profile"
+                        class="relative w-full h-full object-cover rounded-full border-4 border-slate-800 floating shadow-[0_0_30px_1px_#3ac5bf]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-darker ">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 reveal">About <span class="gradient-text">Me</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <div class="relative w-64 h-64">
+                        <div
+                            class="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary to-secondary blur-xl opacity-20">
+                        </div>
+                        <img src="man.jpg" alt="About"
+                            class="relative w-full h-full object-cover rounded-full border-4 border-slate-800 shadow-[0_0_30px_1px_#43bca6]">
+                    </div>
+                </div>
+
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-bold mb-6 reveal">Who am I?</h3>
+                    <p class="text-slate-400 mb-6 reveal">
+                        I am a Full Stack Python Developer with deep expertise in frontend technologies, passionate about
+                        building user-friendly, responsive, and scalable web application.
+                        I specialize in JavaScript ecosystems including React, Django, and modern CSS frameworks.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <h4 class="font-semibold mb-2 reveal">Name: <span class="text-slate-300">Krishna Modak</span></h4>
+                            <h4 class="font-semibold mb-2 reveal">Email: <span
+                                    class="text-slate-300" reveal>modakkrishna789@gmail.com</span>
+                            </h4>
+                        </div>
+                        <div>
+                           <h4 class="font-semibold mb-2 reveal">Location: <span class="text-slate-300">Dhanbad, Jharkhand
+                                </span></h4>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <a href="resume.pdf" target="_blank"
+                            class="px-6 py-3 rounded-full btn-primary font-medium">Download CV</a>
+                        <a href="#contact"
+                            class="px-6 py-3 rounded-full border border-primary text-primary font-medium hover:bg-primary/10 transition">Contact
+                            Me</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <!-- Experience Timeline -->
+             <section id="Education">
+            <div class="mt-20">
+                <h3 class="text-2xl font-bold mb-8 text-center  reveal">My <span class="gradient-text">QULAFICATION</span></h3>
+
+                <div class="relative max-w-3xl mx-auto">
+                    <div class="absolute left-1/2 h-full w-0.5 bg-slate-700 transform -translate-x-1/2"></div>
+
+                    <div class="mb-8 flex justify-between items-center w-full timeline-item">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="order-1 w-5/12 px-4 py-4 bg-slate-800 rounded-lg shadow-lg">
+                            <h4 class="text-lg font-bold mb-2 reveal">IES UNIVARSITY, BHOPAL</h4>
+                            <p class="text-sm text-slate-400 mb-2 reveal">🎓 B.Tech in Computer Science Engineering (2022–2026)</p>
+                            <p class="text-slate-300 reveal">
+                                Developing expertise in software development and web technologies, with
+                                proficiency in programming language, problem-solving, and creating impactful projects.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mb-8 flex justify-between items-center w-full timeline-item">
+                        <div class="order-1 w-5/12 px-4 py-4 bg-slate-800 rounded-lg shadow-lg">
+                            <h4 class="text-lg font-bold mb-2 reveal">DAV CENTENARY PUBLIC SCHOOL, DHANBAD</h4>
+                            <p class="text-sm text-slate-400 mb-2 reveal">🎓Class 12ᵗʰ (Science) 2021 - 2022</p>
+                            <p class="text-slate-300 reveal">
+                                Completed Class 12 (Science stream) under CENTRAL BOARD OF SECONDARY EDUCATION (CBSE) with
+                                focus on Mathematics, Physics And Chemistry.
+                            </p>
+                        </div>
+                        <div class="order-1 w-5/12"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Tools & Technologies -->
+    <section id="tools">
+        <div class="mt-16 reveal">
+            <h3 class="text-2xl font-bold mb-8 text-center reveal"><span class="gradient-text">SKILLS</span>
+            </h3>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+
+                <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+                    <i class="fab fa-html5 text-4xl text-orange-500 mb-2 reveal"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+                    <i class="fab fa-css3-alt text-4xl text-blue-500 mb-2 reveal"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+                    <i class="fab fa-js text-4xl text-yellow-400 mb-2 reveal"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+                    <i class="fab fa-bootstrap text-4xl text-purple-500 mb-2 reveal"></i>
+                    <span>Bootstrap</span>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+                    <i class="fab fa-python text-4xl text-green-400 mb-2 reveal"></i>
+                    <span>Django</span>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+                    <i class="fas fa-database text-4xl text-blue-300 mb-2 reveal"></i>
+                    <span>MySQL</span>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+                    <i class="fab fa-python text-4xl text-green-400 mb-2 reveal"></i>
+                    <span>Python</span>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+                    <i class="fab fa-java text-4xl text-pink-500 mb-2 reveal"></i>
+                    <span>Java</span>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+                    <i class="fab fa-git-alt text-4xl text-orange-600 mb-2 reveal"></i>
+                    <span>Git</span>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+                    <i class="fab fa-github text-4xl text-red-500 mb-2 reveal"></i>
+                    <span>GitHub</span>
+                </div>
+                <div class="flex flex-col items-center p-6 bg-slate-800 rounded-lg card-hover">
+                    <i class="fas fa-terminal text-4xl text-gray-300 mb-2 reveal"></i>
+                    <span>VS Code</span>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-darker ">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 reveal">My <span class="gradient-text">Projects</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1683628759584-2990629fa49e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Project 1" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 reveal">AgroSage</h3>
+                        <p class="text-slate-400 mb-4 reveal">
+                            Empowering Indian farmers with technology. Get crop monitoring, expert advice, and connect directly with buyers.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm reveal">WebDev</span>
+                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm reveal">Django</span>
+                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm reveal">SQLite</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://agrosage-yxki.onrender.com/index/" class="text-primary hover:text-secondary">
+                                <i class="fas fa-external-link-alt reveal"></i> Live Demo
+                            </a>
+                            <a href="https://github.com/Krishnamodak/AgroSage1" class="text-primary hover:text-secondary">
+                                <i class="fab fa-github reveal"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://plus.unsplash.com/premium_photo-1725985758251-b49c6b581d17?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Project 2" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Jarvis-VirtualAssistant</h3>
+                        <p class="text-slate-400 mb-4">
+                            Developed a Python-based virtual assistant “Jarvis” 
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm">Python</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/Krishnamodak/Jarvis-Virtual-Assistant-" class="text-primary hover:text-secondary">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="project-card rounded-xl overflow-hidden card-hover">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                            alt="Project 5" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 reveal">Portfolio Website</h3>
+                        <p class="text-slate-400 mb-4 reveal">
+                            A responsive portfolio website built with modern design principles.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm reveal">HTML5</span>
+                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm reveal">CSS3</span>
+                            <span class="px-3 py-1 bg-slate-700 rounded-full text-sm reveal">JavaScript</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://github.com/Krishnamodak/Portfolio" 
+                                class="text-primary hover:text-secondary">
+                                <i class="fab fa-github reveal"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="https://github.com/Krishnamodak?tab=repositories" class="px-8 py-3 rounded-full btn-primary font-medium inline-flex items-center reveal">
+                    View All Projects <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 reveal">Get In <span class="gradient-text reveal">Touch</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 reveal">Contact Information</h3>
+                    <p class="text-slate-400 mb-8 reveal">
+                        Feel free to reach out to me for any questions or opportunities.
+                        I'm always open to discussing new projects, creative ideas or opportunities to be part of your
+                        vision.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-slate-800 p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1 reveal">Location</h4>
+                                <p class="text-slate-400 reveal">Dhanbad, Jharkhand</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="bg-slate-800 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1 reveal">Email</h4>
+                                <p class="text-slate-400 reveal">modakkrishna789@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <h4 class="font-bold mb-4 reveal">Follow Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/Krishnamodak"
+                                class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-primary">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="www.linkedin.com/in/krishna-modak"
+                                class="social-icon w-12 h-12 flex items-center justify-center rounded-full bg-slate-800 hover:bg-blue-600">
+                                <i class="fab fa-linkedin-in text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 reveal">Send Me a Message</h3>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block mb-2 font-medium reveal">Your Name</label>
+                                <input type="text" id="name"
+                                    class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-2 font-medium reveal">Your Email</label>
+                                <input type="email" id="email"
+                                    class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block mb-2 font-medium reveal">Subject</label>
+                            <input type="text" id="subject"
+                                class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2 font-medium reveal">Message</label>
+                            <textarea id="message" rows="5"
+                                class="w-full px-4 py-3 rounded-lg contact-input focus:outline-none"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="px-8 py-3 rounded-full btn-primary font-medium w-full">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darker py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold gradient-text reveal">Portfolio</a>
+                    <p class="text-slate-400 mt-2 reveal">© 2025 Krishna Modak. All rights reserved.</p>
+                </div>
+
+                <div class="flex space-x-6">
+                    <a href="https://github.com/Krishnamodak" class="text-slate-400 hover:text-primary transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/krishna-modak" class="text-slate-400 hover:text-blue-600 transition">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 mt-8 pt-8 text-center text-slate-500">
+                <p>Made with <i class="fas fa-heart text-red-500"></i> and lots of <i
+                        class="fas fa-coffee text-amber-500"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top"
+        class="fixed bottom-8 right-8 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+
+
+
+    <!-- javaScript -->
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+
+                    // Update active link
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Update active link on scroll
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+
+            // Show/hide back to top button
+            const backToTopButton = document.getElementById('back-to-top');
+            if (scrollPosition > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+
+        // Back to top button
+        document.getElementById('back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animate skill bars on scroll
+        const animateSkillBars = () => {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            const skillsSection = document.getElementById('skills');
+            const skillsSectionTop = skillsSection.offsetTop;
+            const windowHeight = window.innerHeight;
+
+            if (window.scrollY > skillsSectionTop - windowHeight + 200) {
+                skillBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                });
+
+                // Remove event listener after animation
+                window.removeEventListener('scroll', animateSkillBars);
+            }
+        };
+
+        window.addEventListener('scroll', animateSkillBars);
+        
+    </script>
+
+    <script>
+  const reveals = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      } else {
+        entry.target.classList.remove("show"); // agar repeat chahiye to rakho
+      }
+    });
+  }, { threshold: 0.2 });
+
+  reveals.forEach(reveal => observer.observe(reveal));
+</script>
+
 </body>
 
 </html>

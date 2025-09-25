@@ -1,0 +1,96 @@
+
+#home h2 .typewriter {
+  display: inline-block;
+  color:rgb(0, 255, 195);
+  font-size: 28px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid rgb(255, 255, 255);
+  animation: typingSmooth 5s linear infinite, blink 0.7s step-end infinite;
+}
+
+@keyframes typingSmooth {
+  0%   { width: 0ch } 
+  20%  { width: 0ch }       /* start typing */
+  50%  { width: 15ch }      /* typing done at half time */
+  70%  { width: 15ch }      /* hold for 2s here */
+  100% { width: 0ch }       /* erase */
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+ .timeline-item div.bg-slate-800 {
+  position: relative;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  overflow: hidden;
+}
+
+.timeline-item div.bg-slate-800:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.05);
+  box-shadow: 0px 15px 35px rgba(0, 255, 150, 0.6);
+}
+
+ /* Border glow effect  */
+.timeline-item div.bg-slate-800::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00ffcc, #ff00ff, #00ccff, #ffcc00);
+  background-size: 400% 400%;
+  z-index: -1;
+  border-radius: inherit;
+  animation: borderGlow 6s ease infinite;
+}
+
+@keyframes borderGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Text hover glow */
+ .timeline-item div.bg-slate-800:hover h4,
+.timeline-item div.bg-slate-800:hover p {
+  color: #ffffff;
+  transition: color 0.4s ease;
+} 
+
+
+/* Hidden by default */
+.education-content {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 0.8s ease-in-out;
+}
+
+/* When visible on screen */
+.education-content.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+
+
+/* Hidden by default */
+.reveal {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 0.8s ease-in-out;
+}
+
+/* When visible */
+.reveal.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+
+
